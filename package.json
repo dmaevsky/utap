@@ -1,0 +1,23 @@
+{
+  "name": "utap",
+  "version": "0.1.0",
+  "description": "Micro TAP formatter",
+  "type": "module",
+  "main": "src/utap.js",
+  "bin": {
+    "utap": "src/utap.js"
+  },
+  "scripts": {
+    "test": "find tests -type f -name '*.test.js' -exec echo \\# utap-src:{} \\; -exec node {} \\; | node src/utap.js"
+  },
+  "keywords": [
+    "TAP",
+    "consumer",
+    "formatter"
+  ],
+  "author": "Dmitry Maevsky",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.1.2"
+  }
+}
