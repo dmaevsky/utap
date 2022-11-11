@@ -1,6 +1,6 @@
 {
   "name": "utap",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Micro TAP formatter",
   "type": "module",
   "main": "src/utap.js",
@@ -9,6 +9,10 @@
   },
   "scripts": {
     "test": "find tests -type f -name '*.test.js' -exec echo \\# utap-src:{} \\; -exec node {} \\; | node src/utap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmaevsky/utap.git"
   },
   "keywords": [
     "TAP",
