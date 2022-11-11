@@ -3,6 +3,12 @@ A micro TAP formatter that works very well with the Node >=18 built-in [`node:te
 - The output format is inspired by [`AVA`](https://github.com/avajs/ava).
 - Less than 100 lines of code, and a single [`chalk`](https://www.npmjs.com/package/chalk) dependency.
 
+### Give it a try
+```
+node my.test.js | npx utap
+```
+
+### Use it in your project
 ```
 npm install --save-dev utap
 ```
