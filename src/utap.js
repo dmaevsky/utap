@@ -1,4 +1,4 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 import { pipeline } from 'node:stream/promises';
 import * as readline from 'node:readline/promises';
 import process from 'node:process';
