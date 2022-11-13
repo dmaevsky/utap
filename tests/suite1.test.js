@@ -5,6 +5,6 @@ test('a passing test', () => {
   assert(true);
 });
 
-test('deepEqual failure', {todo: 1}, () => {
-  assert.deepEqual([1,2], [1,5]);
+test('deepEqual failure', {skip: 1}, () => {
+  assert.deepEqual(['test and', 'fail'], ['test and', 'succeed']);
 });

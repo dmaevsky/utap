@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-test('another passing test', () => {
-  assert(true);
+test('a skipped test', t => {
+  return t.skip();
+  assert.equal('you wish', 'passing through');
 });
 
-test('equal failure', {skip: 1}, () => {
+test('a todo test', {todo: 1}, () => {
   assert.equal({}, {a:5});
 });
