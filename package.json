@@ -1,6 +1,6 @@
 {
   "name": "utap",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Micro TAP formatter",
   "type": "module",
   "main": "src/utap.js",
@@ -25,6 +25,6 @@
   "author": "Dmitry Maevsky",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^5.1.2"
+    "chalk": "^5.2.0"
   }
 }

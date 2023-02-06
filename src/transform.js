@@ -24,7 +24,7 @@ export async function* transform(source) {
   let eat = testPoint;
 
   const counters = { passed: 0, failed: 0, skipped: 0, todo: 0 };
-  let total = 0;
+  const subTests = [];
   let suiteName = '';
 
   function testPoint(line) {
@@ -39,11 +39,10 @@ export async function* transform(source) {
       return;
     }
 
-    const [, planned] = /^1\.\.([\d]+)/.exec(line) || [];
-    if (planned) {
-      assert.equal(+planned, total);
-      total = 0;
-      suiteName = '';
+    const [, subDesc] = /^# Subtest: (.*)/.exec(line) || [];
+
+    if (subDesc) {
+      subTests.push(subDesc);
       return;
     }
 
@@ -52,13 +51,12 @@ export async function* transform(source) {
 
     if (!matched) return;
 
-    const status = ({ skip: 'skipped', todo: 'todo'})[directive?.toLowerCase()] ||
+    const status = ({ skip: 'skipped', todo: 'todo' })[directive?.toLowerCase()] ||
       (failed ? 'failed' : 'passed');
 
-    const spit = prefix[status] + color[status](suiteName + description) + '\n';
+    const spit = prefix[status] + color[status](suiteName + [...subTests, description].join('   ')) + '\n';
 
     ++counters[status];
-    ++total;
 
     if (status === 'failed') eat = yamlStart;
     return spit;
@@ -74,10 +72,13 @@ export async function* transform(source) {
       eat = testPoint;
       return;
     }
-    return '\t' + line + '\n';
+    return '    ' + line + '\n';
   }
 
   for await (let line of source) {
+    while (!line.startsWith(''.padStart(subTests.length * 4))) subTests.pop();
+    line = line.slice(subTests.length * 4);
+
     const spit = eat(line);
     if (spit) yield spit;
   }
